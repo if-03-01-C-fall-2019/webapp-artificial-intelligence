@@ -15,7 +15,7 @@ evaluation button:
 	At the end of the page there should be an evaluation button that takes you 
 	to a new page with all the questions and answers you have given.
 	This page also lists which answers are correct and what percentage you have achieved.
-	After clicking this button, you should not be able to click it again until you reload the page. 
+	After clicking this button, you should not be able to click it again until you click on a reset button. 
 	Instead, the percentage of responses should appear.
 
 
