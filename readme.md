@@ -1,20 +1,41 @@
 Web application from the Artificial Intelligence group (Kuvac, Jahn)
 
-We planned to do a jump and run with following features:
+We planned to make a quiz, 
+but not a normal quiz in which you have a page with all the quiz questions, 
+instead there should be a button under each text section or chapter. 
 
+Question button:
+	This button is supposed to create a pop-up window in which it is asking specific 
+	questions about the current text section with the different answer options.
+ 
+evaluation button:
+	At the end of the page there should be an evaluation button that takes you 
+	to a new page with all the questions and answers you have given.
+	This page also lists which answers are correct and what percentage you have achieved.
+	After clicking this button, you should not be able to click it again until you reload the page. 
+	Instead, the percentage of responses should appear.
 
-* adjustable difficulty of the AI
+Answer/Question-pool:
+	In addition, all questions should be selected as far as possible from a pool of answers and so all wrong answers
+	so that the same questions are not always arranged the same.
 
-* The game will be structured similar to Super Mario where it is possible if you jump on the opponent to take him out
+An example of this questions would be:
 
-* The enemies will be androids which reflects the AI
+	Where was the term Artificial Intelligence born?
 
-* different types of enemies, some of them will shoot back or be faster or endure more
+	A: Massachusetts Institute of Technology
 
-* Depending on the difficulty, the tactical movement and thinking of the opponents changes
+	B: National University of Singapore
+	
+	C: The Dartmouth Conference
 
-* powerups and powerdowns
+	D: Yale University
 
-* accessable by website with pc and mobile phones
+Point System:	
+	If you choose the right answer you get a point, but if you choose the wrong answer you get none.
+	If there are two correct answers, for example, you can only choose two. If you then choose a right 
+	and a wrong one, you get one point, two right two points and two wrong no points
 
-* 5 levels are planned for the beginning and a boss fight for the last level
+Server:
+	we create a server on which the data of each completed quiz is stored.
+	A quiz counts as completed when you click on the evaluation button which is only active when you have clicked on every question button.
