@@ -39,11 +39,13 @@ An example of this questions would be:
 
 
 Point System:	
+
 	If you choose the right answer you get a point, but if you choose the wrong answer you get none.
 	If there are two correct answers, for example, you can only choose two. If you then choose a right 
 	and a wrong one, you get one point, two right two points and two wrong no points
 
 
 Server:
+
 	we create a server on which the data of each completed quiz is stored.
 	A quiz counts as completed when you click on the evaluation button which is only active when you have clicked on every question button.
