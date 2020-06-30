@@ -211,9 +211,9 @@ h1 {
   color: white;
   border: 2px solid white;
   margin: 0;
-  position:relative;
-  top: 90%;
-  left: 10%;
+  left:10%;
+  position:absolute;
+  top: 85%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   letter-spacing: 1px;
@@ -241,12 +241,12 @@ h1 {
 
 #submitButton {
   background-color: black;
-  padding: 25px 30px;
+  padding: 10px 30px;
   color: white;
   border: 2px solid white;
   margin: 0;
-  position:relative;
-  top: 90%;
+  position:absolute;
+  top: 85%;
   left: 80%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
