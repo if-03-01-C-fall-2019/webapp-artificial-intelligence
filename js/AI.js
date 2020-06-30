@@ -1,25 +1,48 @@
-function on() {
-  document.getElementById("overlay").style.display = "block";
+let articleID = -1;
+
+let answeredQuestions = [];
+
+function on(articleId) {
+  let btn = document.getElementById("quiz"+articleId);
+  if(btn.hasAttribute("done")){
+      alert("You have already answered those questions!");
+      return;
+  }
+
+  articleID = articleId;
+
+  document.getElementById("questionOverlay").style.display = "block";
   document.body.style.position = "fixed";
   nextQuestionID = 1;
   fetchQuestion(nextQuestionID);
+
+  btn.setAttribute("done", "true");
 }
 
 function off() {
-  document.getElementById("overlay").style.display = "none";
+  document.getElementById("questionOverlay").style.display = "none";
   document.body.style.position = "static";
 }
 
 function next(){
-  let selectedAnswer;
+  let btn = document.getElementById("submitButton");
 
-  if((selectedAnswer = answerSelected()) != undefined){
-    document.getElementById("error").hidden = true;
-
-    saveResult(selectedAnswer);
+  if(btn.innerText == "Next"){
+    btn.innerText = "Submit";
+    document.getElementById("info").hidden = true;
     fetchQuestion(nextQuestionID);
-  } else {
-    showError();
+  }
+  else{
+    let selectedAnswer = "";
+
+    if((selectedAnswer = answerSelected()) != undefined){
+      document.getElementById("info").hidden = true;
+
+      saveResult(selectedAnswer);
+      btn.innerText = "Next";
+    } else {
+      showError();
+    }
   }
 }
 
@@ -36,7 +59,8 @@ function answerSelected(){
 }
 
 function showError(){
-  let errorElem = document.getElementById("error");
+  let errorElem = document.getElementById("info");
+  errorElem.innerText = "You must select one of the above before moving on!";
   errorElem.removeAttribute("hidden");
 }
 
@@ -46,12 +70,12 @@ let currentQuestion;
 let nextQuestionID;
 
 function fetchQuestion(id){
-  fetch("http://dev.byiconic.at:3000/questions?ID="+id+"").then (response => response.json())
+  fetch("http://dev.byiconic.at:3000/articles/"+articleID).then (response => response.json())
   .then(function(data){
-    currentQuestion = data[0];
+    currentQuestion = getRightQuestion(data, id);
     nextQuestionID++;
 
-    if(data.length == 1){
+    if(currentQuestion != undefined){
       //Load Questions
       loadQuestion(currentQuestion);
     } else {
@@ -61,6 +85,14 @@ function fetchQuestion(id){
   .catch( function (error) {
     console.error("error: " + error);
   });
+}
+
+function getRightQuestion(data, id){
+  for (let i = 0; i < data.questions.length; i++) {
+    if(data.questions[i].ID == id){
+      return data.questions[i];
+    }
+  }
 }
 
 function loadQuestion(question){
@@ -76,7 +108,7 @@ function saveResult(selectedAnswer) {
 }
 
 function getCurrentCount(id, selectedAnswer){
-  fetch("http://dev.byiconic.at:3000/results?id="+id+"").then (response => response.json())
+  fetch("http://dev.byiconic.at:3000/results?id="+articleID+"").then (response => response.json())
   .then(function(data){
     increaseServerCounts(data[0], id, selectedAnswer);
   })
@@ -84,11 +116,39 @@ function getCurrentCount(id, selectedAnswer){
 
 function increaseServerCounts(currentResult, questionID, selectedAnswer) {
   let newResult = currentResult;
-  newResult.count++;
-  if(selectedAnswer === currentQuestion.RightAnswer)
-    newResult.correctCount++;
+  let correct = false;
 
+  newResult.questions[questionID-1].count++;
+  if(selectedAnswer === currentQuestion.RightAnswer){
+    newResult.questions[questionID-1].correctCount++;
+    correct = true;
+  }
+
+  addToEndResult(correct, selectedAnswer);
+  showResult(correct, currentQuestion.RightAnswer);
   updateServer(newResult);
+}
+
+function addToEndResult(correct, selectedAnswer) {
+  currentQuestion.correct = correct;
+  currentQuestion.selectedAnswer = selectedAnswer;
+
+  answeredQuestions.push(currentQuestion);
+}
+
+function showResult(correct, rightAnswer){
+  let infoElem = document.getElementById("info");
+
+  if(correct){
+    infoElem.style.color = "green";
+    infoElem.innerText = "Correct!";
+
+  }else{
+    infoElem.style.color = "red";
+    infoElem.innerText = "Incorrect! '"+rightAnswer+"' would be correct.";
+  }
+
+  infoElem.hidden = false;
 }
 
 function updateServer(newResult){
@@ -183,4 +243,65 @@ function createQuestionArticle(question){
   result.appendChild(document.createElement("br"));
 
   return result;
+}
+
+function createEvaluationTable(){
+  let result = document.createElement("table");
+  result.setAttribute("id", "evaluationTable");
+
+  return result;
+}
+
+function createEvaluationRow(question, rightAnswer, selectedAnswer){
+  let result = document.createElement("tr");
+  result.setAttribute("class", "evaluationTableRow");
+
+  let col1 = document.createElement("td");
+  col1.innerText = question;
+  col1.setAttribute("class", "evaluationTableRowField")
+
+  let col2 = document.createElement("td");
+  col2.innerText = rightAnswer;
+  col2.setAttribute("class", "evaluationTableRowField")
+
+  let col3 = document.createElement("td");
+  col3.innerText = selectedAnswer;
+  col3.setAttribute("class", "evaluationTableRowField")
+
+  result.appendChild(col1);
+  result.appendChild(col2);
+  result.appendChild(col3);
+
+  return result;
+}
+
+function openEvaluation() {
+  document.getElementById("evaluationOverlay").style.display = "block";
+  document.body.style.position = "fixed";
+
+  let table = createEvaluationTable();
+
+  let totalCount = 0;
+  let correctCount = 0;
+
+  for(let i = 0; i < answeredQuestions.length; i++, totalCount++) {
+    let newRow = createEvaluationRow(answeredQuestions[i].Question, answeredQuestions[i].RightAnswer, answeredQuestions[i].selectedAnswer);
+    table.appendChild(newRow);
+
+    if(answeredQuestions[i].RightAnswer == answeredQuestions[i].selectedAnswer){
+      correctCount++;
+    }
+  }
+
+  let percentage = document.createElement("p");
+  percentage.innerText = (correctCount / totalCount) * 100 + " %";
+  percentage.setAttribute("id", "evaluationPercentage");
+
+  document.getElementById("evaluationContent").appendChild(table);
+  document.getElementById("evaluationContent").appendChild(percentage);
+}
+
+function closeEvaluation() {
+  document.getElementById("evaluationOverlay").style.display = "none";
+  document.body.style.position = "static";
 }

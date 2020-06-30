@@ -13,7 +13,7 @@
       <div id="banner">
         <ul>
           <li><a href="#banner">Home</a></li>
-          <li><a href="#">NotImplementedSite</a></li>
+          
         </ul>
       </div>
 </header>
@@ -21,47 +21,43 @@
   <ul>
     <li><a class="navigation" href="#banner">Home</a></li>
     <li><a href="#section-1">History</a></li>
-    <li><a href="#section-2">1955-1999</a></li>
     <li><a href="#section-3">2002-2016</a></li>
     <li><a href="#section-4">A.I. Today</a></li>
 
   </ul>
 </nav>
 
-<div id="overlay">
-  <div id="questionDiv" class="container">
-    <!--
-    <article class="question">
-      <h1 class="question">Where was the term “Artificial Intelligence” born?</h1>
-      <input id="answer1" name="answer" type="radio" value="answer1" checked>
-      <label class="answerRadioBtn" for="answer1">At the MIT</label>
-      <br>
-
-      <input id="answer2" name="answer" type="radio" value="answer2">
-      <label class="answerRadioBtn" for="answer2">At the Dartmouth Conference</label>
-      <br>
-
-      <input id="answer3" name="answer" type="radio" value="answer3">
-      <label class="answerRadioBtn" for="answer3">At the Yale University</label>
-      <br>
-
-      <input id="answer4" name="answer" type="radio" value="answer4">
-      <label class="answerRadioBtn" for="answer4">At the ITEC Conference</label>
-      <br>
-    </article>
--->
-  </div>
+<div class="overlay" id="questionOverlay">
+  <div id="questionDiv" class="container"></div>
   <div class="container text-center">
-    <p id="error" hidden>You must select one of the above before moving on!</p>
+    <p id="info" hidden>You must select one of the above before moving on!</p>
   </div>
   <button id="cancelButton" onclick="off()">Cancel</button>
   <button id="submitButton" onclick="next()">Submit</button>
+</div>
+
+<div class="overlay" id="evaluationOverlay">
+  <div class="text-center" id="evaluationContent">
+
+  </div>
+  <div class="container text-center">
+      <button onclick="closeEvaluation()">Close</button>
+  </div>
 </div>
 
 <main>
   <section id="mainHeader">
     <h1 class="headershadow"> Artificial Intelligence </h1>
   </section>
+    <h2>What is AI?</h2>
+    <section class="b">
+      <p>Artificial Intelligence (AI) simulates human intelligence with machines, especially computer systems. This includes learning (the collection of information and rules for using the information), the conclusion (using the rules to draw approximate or definitive conclusions) and self-correction. Special applications of AI are expert systems, speech recognition and machine vision.
+The term artificial intelligence (AI) was invented by John McCarthy, an American computer scientist, at the Dartmouth Conference in 1956. Today, AI is a generic term that ranges from robotic process automation (RPA) to actual robotics.
+Artificial intelligence has become increasingly important recently, in part due to Big Data and the increase in the speed, size, and variety of data that companies collect today. For example, AI can recognize patterns in data more efficiently than humans, giving companies more insight into their data.
+There are two types of AI’s.
+The first type is the weak AI. This is an AI system that is developed and trained for a specific task. Virtual personal assistants, like Siri from Apple, are a form of weak AI. The second type is the strong AI. The strong AI, also known as general artificial intelligence, is an AI system with generalized human cognitive skills so that when it get faced with an unknown task, it has enough intelligence to find a solution. The Turing test, developed Alan Turing in 1950, is a method to determine whether a computer can think like a human, but the method is controversial.
+</p>
+    </section>
 
     <h2>History</h2>
     <section id="section-1">
@@ -138,7 +134,7 @@
          </section>
   </section>
 
-  <button class="quizButton" onclick="on()">Try your knowledge here</button>
+  <button id="quiz1" class="quizButton" onclick="on(1)">Try your knowledge here</button>
 
     <section id="section-3">
       <section class="w rounded_top">
@@ -214,6 +210,9 @@
            communication.</p>
     </section>
   </section>
+
+<button id="quiz2" class="quizButton" onclick="on(2)">Try your knowledge here</button>
+
   <section id="section-4">
     <h2> AI Today</h2>
     <section class="b rounded_top">
@@ -265,6 +264,10 @@
           or two lives.</p>
     </section>
   </section>
+
+  <button id="quiz3" class="quizButton" onclick="on(3)">Try your knowledge here</button>
+
+  <button id="auswertung" onclick="openEvaluation()">Auswertung</button>
 </main>
 <footer>
 </footer>

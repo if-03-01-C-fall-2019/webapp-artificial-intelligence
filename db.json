@@ -1,0 +1,124 @@
+{
+	"articles":
+	[
+		{
+		"id": 1,
+		"questions": 
+		[
+			  {
+				"ID": 1,
+				"Question": "Where was the term “Artificial Intelligence” born?",
+				"AnswerOne": "At the MIT",
+				"AnswerTwo": "At the Dartmouth Conference",
+				"AnswerThree": "At the Yale University",
+				"AnswerFour": "At the ITEC Conference",
+				"RightAnswer": "At the Dartmouth Conference"
+			  },
+			  {
+				"ID": 2,
+				"Question": "What was the first industrial robot?",
+				"AnswerOne": "Eliza",
+				"AnswerTwo": "Deep Blue",
+				"AnswerThree": "Shakey",
+				"AnswerFour": "Unimate",
+				"RightAnswer": "Unimate"
+			  },
+			  {
+				"ID": 3,
+				"Question": "Which company developed AIBO?",
+				"AnswerOne": "Microsoft",
+				"AnswerTwo": "Sony",
+				"AnswerThree": "Apple",
+				"AnswerFour": "Samsung",
+				"RightAnswer": "Sony"
+			  },
+			  {
+				"ID": 4,
+				"Question": "How many chess matches has Deep Blue won against Garry Kasparov?",
+				"AnswerOne": "1",
+				"AnswerTwo": "0",
+				"AnswerThree": "2",
+				"AnswerFour": "3",
+				"RightAnswer": "1"
+			  }
+			  
+		]
+		},
+		{
+		"id": 2,
+		"questions": 
+		[
+			  {
+				"ID": 1,
+				"Question": "What is Roomba?",
+				"AnswerOne": "A Chessbot",
+				"AnswerTwo": "A question answering computer",
+				"AnswerThree": "A vacuum cleaner",
+				"AnswerFour": "A chatbot",
+				"RightAnswer": "A vacuum cleaner"
+			  },
+			  {
+				"ID": 2,
+				"Question": "On which operating system does Siri run?",
+				"AnswerOne": "Windows",
+				"AnswerTwo": "Android",
+				"AnswerThree": "Linux",
+				"AnswerFour": "IOS",
+				"RightAnswer": "IOS"
+			  },
+			  {
+				"ID": 3,
+				"Question": "What is the Product name of Alexa?",
+				"AnswerOne": "Amazon Beta",
+				"AnswerTwo": "Amazon Echo",
+				"AnswerThree": "Amazon Eco",
+				"AnswerFour": "Amazon Alpha",
+				"RightAnswer": "Amazon Echo"
+			  },
+			  {
+				"ID": 4,
+				"Question": "Which AI was invented first?",
+				"AnswerOne": "Siri",
+				"AnswerTwo": "Alexa",
+				"AnswerThree": "Tay",
+				"AnswerFour": "Eugene",
+				"RightAnswer": "Siri"
+			  }	
+		]
+		},
+		{
+		"id": 3,
+		"questions": 
+		[
+			  {
+				"ID": 1,
+				"Question": "What is the best comparison with an AI?",
+				"AnswerOne": "It is a killer machine who will steal our jobs",
+				"AnswerTwo": "It is a well-equipped toolbox",
+				"AnswerThree": "It is just a toy for everyone who is playing video games",
+				"AnswerFour": "It is a good replacement for the mankind",
+				"RightAnswer": "It is a well-equipped toolbox"
+			  },
+			  {
+				"ID": 2,
+				"Question": "Can you save lives “just” with an AI?",
+				"AnswerOne": "YES",
+				"AnswerTwo": "NO",
+				"AnswerThree": "I don't know",
+				"AnswerFour": "Maybe",
+				"RightAnswer": "NO"
+			  },
+			  
+			  {
+				"ID": 3,
+				"Question": "What is a specific activity for an AI?",
+				"AnswerOne": "Making forecasts and possible courses based on structured data.",
+				"AnswerTwo": "To water plants",
+				"AnswerThree": "To connect you with the internet and to receive phone calls",
+				"AnswerFour": "To transmit network packages",
+				"RightAnswer": "Making forecasts and possible courses based on structured data."
+			  }	
+		]
+		}
+	]
+}
